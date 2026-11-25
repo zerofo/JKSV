@@ -34,9 +34,9 @@ TARGET		:=	JKSV
 BUILD		:=	build
 SOURCES		:=	source source/appstates source/config source/curl source/data source/fs \
 				source/keyboard source/logging source/remote source/strings source/sys \
-				source/tasks source/ui
+				source/tasks source/ui compat
 DATA		:=	data
-INCLUDES	:=	include ./Libraries/FsLib/Switch/FsLib/include ./Libraries/SDLLib/SDL/include
+INCLUDES	:=	compat include ./Libraries/FsLib/Switch/FsLib/include ./Libraries/SDLLib/SDL/include
 EXEFS_SRC	:=	exefs_src
 APP_TITLE   :=  JKSV
 APP_AUTHOR  :=  JK
