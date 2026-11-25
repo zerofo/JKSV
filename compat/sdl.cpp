@@ -78,8 +78,9 @@ bool sdl::Texture::render_part_stretched(SharedTexture &target,
 {
     if (!m_texture) { return false; }
     // 注意：新版 render_part_stretched 参数顺序为 dest 在前、source 在后，这里做转换。
-    const bool result = m_texture->render_part_stretched(destinationX, destinationY, destinationWidth, destinationHeight, sourceX, sourceY, sourceWidth, sourceHeight);
-    return set_render_target(target) && result;
+    const bool targetSet = set_render_target(target);
+    if (!targetSet) { return false; }
+    return m_texture->render_part_stretched(destinationX, destinationY, destinationWidth, destinationHeight, sourceX, sourceY, sourceWidth, sourceHeight);
 }
 
 bool sdl::Texture::clear(Color color) noexcept
