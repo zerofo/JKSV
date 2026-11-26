@@ -47,7 +47,7 @@ ICON		:=	icon.jpg
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
-ARCH	:=	-march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft -fPIE
+ARCH	:=	-march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft
 
 # NOTE: For some reason, devkitpro no longer has freetype-config included? Also, using pkg-config causes conflicts with
 # my local pkg-config and I don't feel like dealing with CMake for all of this right now.
@@ -150,6 +150,12 @@ endif
 .PHONY: $(BUILD) FsLib SDLLib Assets clean all
 
 #---------------------------------------------------------------------------------
+
+# vgedit-style fix: repair PIE link breakage under devkitA64 gcc 15 (idempotent)
+all: | fix_pie
+.PHONY: fix_pie
+fix_pie:
+	python3 $(CURDIR)/fix_pie.py
 all: FsLib SDLLib Assets $(BUILD)
 
 $(BUILD): FsLib SDLLib Assets
